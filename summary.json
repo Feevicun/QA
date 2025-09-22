@@ -1,0 +1,2406 @@
+{
+  "collection": {
+    "_": {
+      "postman_id": "1601b510-d727-44d0-a48b-ea8f225412c0",
+      "exporter_id": "30947666"
+    },
+    "item": [
+      {
+        "id": "065bcbfe-1306-4085-8038-b7a17f93c475",
+        "name": "get all",
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "sample_mflix"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET",
+          "auth": {
+            "type": "noauth",
+            "noauth": []
+          }
+        },
+        "response": [],
+        "event": []
+      },
+      {
+        "id": "5d2c2f2a-8faf-41c7-a52e-9a1d9c256b2a",
+        "name": "post user",
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "users"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Viktoria\",\n  \"email\": \"vika@example.com\",\n  \"password\": \"12345\"\n}\n",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          },
+          "auth": {
+            "type": "noauth",
+            "noauth": []
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "37ac443b-5848-4235-bf3f-c420a42ed70b",
+              "type": "text/javascript",
+              "packages": {},
+              "exec": [
+                "pm.test(\"Створення користувача успішне\", function () {",
+                "    pm.response.to.have.status(201);",
+                "    pm.expect(pm.response.json()).to.have.property(\"_id\");",
+                "    pm.environment.set(\"userId\", pm.response.json()._id);",
+                "});",
+                ""
+              ],
+              "_lastExecutionId": "224d369d-08cd-45bd-90b3-e0bf0b84182e"
+            }
+          }
+        ]
+      },
+      {
+        "id": "242cc8fc-8b5a-4909-be82-9c2d26e26fa7",
+        "name": "git id user",
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "users",
+              "68d1794fee0390b407d82377"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "4b757a8f-1aa9-434f-9c4d-294336f33791",
+              "type": "text/javascript",
+              "packages": {},
+              "exec": [
+                "pm.test(\"Отримання користувача успішне\", function () {",
+                "    pm.response.to.have.status(200);",
+                "    pm.expect(pm.response.json().name).to.eql(\"Viktoria\");",
+                "});",
+                ""
+              ],
+              "_lastExecutionId": "9273451a-3e9c-4a71-866a-ab8ebd00e74f"
+            }
+          }
+        ]
+      },
+      {
+        "id": "e3694ed0-5459-4503-b8fe-8a32a160457a",
+        "name": "update user",
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "users",
+              "68d176beee0390b407d82376"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "PUT",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Viktoria Updated\",\n  \"email\": \"vika.updated@example.com\"\n}\n",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "43f15a98-abeb-4667-b334-2cdd26843025",
+              "type": "text/javascript",
+              "packages": {},
+              "exec": [
+                "pm.test(\"Оновлення користувача успішне\", function () {",
+                "    pm.response.to.have.status(200);",
+                "    pm.expect(pm.response.json().value.name).to.eql(\"Viktoria Updated\");",
+                "});",
+                ""
+              ],
+              "_lastExecutionId": "46bbb50b-0e81-46cb-a8cb-367328f0b47b"
+            }
+          }
+        ]
+      },
+      {
+        "id": "be5fd27c-e2c2-42ee-975d-64e4518aaa18",
+        "name": "delete user",
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "users",
+              "68d176beee0390b407d82376"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "DELETE"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "74edaf7a-d15c-4bc5-ae6f-e3d4f4e5d3e7",
+              "type": "text/javascript",
+              "packages": {},
+              "exec": [
+                "pm.test(\"Видалення користувача успішне\", function () {",
+                "    pm.response.to.have.status(200);",
+                "    pm.expect(pm.response.json().message).to.eql(\"Документ видалено\");",
+                "});",
+                ""
+              ],
+              "_lastExecutionId": "f967799e-5d85-416d-9778-90d256019da1"
+            }
+          },
+          {
+            "listen": "prerequest",
+            "script": {
+              "id": "e829ed2c-3d42-47a6-a135-46c2111628fb",
+              "type": "text/javascript",
+              "packages": {},
+              "_lastExecutionId": "87cb956d-66c7-479a-86bb-5e34ac4c3789"
+            }
+          }
+        ]
+      },
+      {
+        "id": "5f43d398-9112-4f1c-9ce5-b5bb54dcada9",
+        "name": "New Request",
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "movies",
+              "search",
+              "query"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [
+              {
+                "key": "year",
+                "value": "1903"
+              }
+            ],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": []
+      }
+    ],
+    "event": [],
+    "variable": [],
+    "info": {
+      "_postman_id": "1601b510-d727-44d0-a48b-ea8f225412c0",
+      "name": "mflix",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    }
+  },
+  "environment": {
+    "id": "57b8e2b9-99a9-45e1-af79-45c74e2701ea",
+    "values": [
+      {
+        "type": "any",
+        "value": "68d17a3bee0390b407d82379",
+        "key": "userId"
+      }
+    ]
+  },
+  "globals": {
+    "id": "31d445d3-473e-4af0-a528-25d3332134c8",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 5,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 4,
+        "pending": 0,
+        "failed": 2
+      },
+      "testScripts": {
+        "total": 4,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 54.333333333333336,
+      "responseMin": 41,
+      "responseMax": 84,
+      "responseSd": 17.113996870657918,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1758558779888,
+      "completed": 1758558780317
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 6,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "8bb4c467-314d-4e10-b082-285891b2025f",
+          "httpRequestId": "7450dc96-d5a8-48f1-9f85-0706bb7fca66"
+        },
+        "item": {
+          "id": "065bcbfe-1306-4085-8038-b7a17f93c475",
+          "name": "get all",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "port": "3000",
+              "path": [
+                "api",
+                "sample_mflix"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "noauth",
+              "noauth": []
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "sample_mflix"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "5f2f3c59-0169-477d-9a8d-c48477542db7",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:3000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET",
+          "auth": {
+            "type": "noauth",
+            "noauth": []
+          }
+        },
+        "response": {
+          "id": "c8279acb-2ce1-4c56-8fe7-17d9fc73b249",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "2"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 22 Sep 2025 16:32:59 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              91,
+              93
+            ]
+          },
+          "cookie": [],
+          "responseTime": 72,
+          "responseSize": 2
+        },
+        "id": "065bcbfe-1306-4085-8038-b7a17f93c475"
+      },
+      {
+        "cursor": {
+          "ref": "b00eb73c-a2f2-4e68-9b90-c378957523a7",
+          "length": 6,
+          "cycles": 1,
+          "position": 1,
+          "iteration": 0,
+          "httpRequestId": "6bd6c217-4519-406d-b765-4026eb85084d"
+        },
+        "item": {
+          "id": "5d2c2f2a-8faf-41c7-a52e-9a1d9c256b2a",
+          "name": "post user",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "port": "3000",
+              "path": [
+                "api",
+                "users"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Viktoria\",\n  \"email\": \"vika@example.com\",\n  \"password\": \"12345\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth",
+              "noauth": []
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "37ac443b-5848-4235-bf3f-c420a42ed70b",
+                "type": "text/javascript",
+                "packages": {},
+                "exec": [
+                  "pm.test(\"Створення користувача успішне\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "    pm.expect(pm.response.json()).to.have.property(\"_id\");",
+                  "    pm.environment.set(\"userId\", pm.response.json()._id);",
+                  "});",
+                  ""
+                ],
+                "_lastExecutionId": "224d369d-08cd-45bd-90b3-e0bf0b84182e"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "users"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "system": true
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "9754abf6-846a-4502-9217-8498a33e1651",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:3000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "79",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Viktoria\",\n  \"email\": \"vika@example.com\",\n  \"password\": \"12345\"\n}\n",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          },
+          "auth": {
+            "type": "noauth",
+            "noauth": []
+          }
+        },
+        "response": {
+          "id": "c0a471d7-5cdb-43bc-a79a-0e0636f2c0a4",
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "137"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"89-u9o6M5ApKXTn/aMJQLbT2TFqYKA\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 22 Sep 2025 16:33:00 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              95,
+              105,
+              100,
+              34,
+              58,
+              34,
+              54,
+              56,
+              100,
+              49,
+              55,
+              97,
+              51,
+              98,
+              101,
+              101,
+              48,
+              51,
+              57,
+              48,
+              98,
+              52,
+              48,
+              55,
+              100,
+              56,
+              50,
+              51,
+              55,
+              57,
+              34,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              86,
+              105,
+              107,
+              116,
+              111,
+              114,
+              105,
+              97,
+              34,
+              44,
+              34,
+              101,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              118,
+              105,
+              107,
+              97,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              99,
+              111,
+              109,
+              34,
+              44,
+              34,
+              112,
+              97,
+              115,
+              115,
+              119,
+              111,
+              114,
+              100,
+              34,
+              58,
+              34,
+              49,
+              50,
+              51,
+              52,
+              53,
+              34,
+              44,
+              34,
+              99,
+              114,
+              101,
+              97,
+              116,
+              101,
+              100,
+              65,
+              116,
+              34,
+              58,
+              34,
+              50,
+              48,
+              50,
+              53,
+              45,
+              48,
+              57,
+              45,
+              50,
+              50,
+              84,
+              49,
+              54,
+              58,
+              51,
+              50,
+              58,
+              53,
+              57,
+              46,
+              57,
+              56,
+              50,
+              90,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 84,
+          "responseSize": 137
+        },
+        "id": "5d2c2f2a-8faf-41c7-a52e-9a1d9c256b2a",
+        "assertions": [
+          {
+            "assertion": "Створення користувача успішне",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "29e5b434-c5b3-453e-8ac9-aab9346f7810",
+          "length": 6,
+          "cycles": 1,
+          "position": 2,
+          "iteration": 0,
+          "httpRequestId": "fc202175-c261-4cab-92df-d4a29919da91"
+        },
+        "item": {
+          "id": "242cc8fc-8b5a-4909-be82-9c2d26e26fa7",
+          "name": "git id user",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "port": "3000",
+              "path": [
+                "api",
+                "users",
+                "68d1794fee0390b407d82377"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4b757a8f-1aa9-434f-9c4d-294336f33791",
+                "type": "text/javascript",
+                "packages": {},
+                "exec": [
+                  "pm.test(\"Отримання користувача успішне\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json().name).to.eql(\"Viktoria\");",
+                  "});",
+                  ""
+                ],
+                "_lastExecutionId": "9273451a-3e9c-4a71-866a-ab8ebd00e74f"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "users",
+              "68d1794fee0390b407d82377"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "4c8c0f19-f934-42da-85e1-a6383fed7003",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:3000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "9ac7644f-6060-4685-909e-c16fa0045de4",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "137"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"89-7gRrExdmfPZPBmvvSv9n62x7pp0\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 22 Sep 2025 16:33:00 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              95,
+              105,
+              100,
+              34,
+              58,
+              34,
+              54,
+              56,
+              100,
+              49,
+              55,
+              57,
+              52,
+              102,
+              101,
+              101,
+              48,
+              51,
+              57,
+              48,
+              98,
+              52,
+              48,
+              55,
+              100,
+              56,
+              50,
+              51,
+              55,
+              55,
+              34,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              86,
+              105,
+              107,
+              116,
+              111,
+              114,
+              105,
+              97,
+              34,
+              44,
+              34,
+              101,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              118,
+              105,
+              107,
+              97,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              99,
+              111,
+              109,
+              34,
+              44,
+              34,
+              112,
+              97,
+              115,
+              115,
+              119,
+              111,
+              114,
+              100,
+              34,
+              58,
+              34,
+              49,
+              50,
+              51,
+              52,
+              53,
+              34,
+              44,
+              34,
+              99,
+              114,
+              101,
+              97,
+              116,
+              101,
+              100,
+              65,
+              116,
+              34,
+              58,
+              34,
+              50,
+              48,
+              50,
+              53,
+              45,
+              48,
+              57,
+              45,
+              50,
+              50,
+              84,
+              49,
+              54,
+              58,
+              50,
+              57,
+              58,
+              48,
+              51,
+              46,
+              55,
+              51,
+              48,
+              90,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 41,
+          "responseSize": 137
+        },
+        "id": "242cc8fc-8b5a-4909-be82-9c2d26e26fa7",
+        "assertions": [
+          {
+            "assertion": "Отримання користувача успішне",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "fe8474cd-c2b0-4e0a-a5c7-43b83c1fdbef",
+          "length": 6,
+          "cycles": 1,
+          "position": 3,
+          "iteration": 0,
+          "httpRequestId": "3ca953a0-ccca-4249-baed-3321e8182c07"
+        },
+        "item": {
+          "id": "e3694ed0-5459-4503-b8fe-8a32a160457a",
+          "name": "update user",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "port": "3000",
+              "path": [
+                "api",
+                "users",
+                "68d176beee0390b407d82376"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Viktoria Updated\",\n  \"email\": \"vika.updated@example.com\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "43f15a98-abeb-4667-b334-2cdd26843025",
+                "type": "text/javascript",
+                "packages": {},
+                "exec": [
+                  "pm.test(\"Оновлення користувача успішне\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json().value.name).to.eql(\"Viktoria Updated\");",
+                  "});",
+                  ""
+                ],
+                "_lastExecutionId": "46bbb50b-0e81-46cb-a8cb-367328f0b47b"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "users",
+              "68d176beee0390b407d82376"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "system": true
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "81e2856a-0844-4b5d-a6a6-a2bc5d00b4ba",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:3000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "72",
+              "system": true
+            }
+          ],
+          "method": "PUT",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Viktoria Updated\",\n  \"email\": \"vika.updated@example.com\"\n}\n",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": {
+          "id": "39a40ebf-cddf-487e-9e45-cd51a067bd11",
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "52"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"34-TdssZGsdCuUrlcj1TCNUriy38pE\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 22 Sep 2025 16:33:00 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              208,
+              148,
+              208,
+              190,
+              208,
+              186,
+              209,
+              131,
+              208,
+              188,
+              208,
+              181,
+              208,
+              189,
+              209,
+              130,
+              32,
+              208,
+              189,
+              208,
+              181,
+              32,
+              208,
+              183,
+              208,
+              189,
+              208,
+              176,
+              208,
+              185,
+              208,
+              180,
+              208,
+              181,
+              208,
+              189,
+              208,
+              190,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 44,
+          "responseSize": 52
+        },
+        "id": "e3694ed0-5459-4503-b8fe-8a32a160457a",
+        "assertions": [
+          {
+            "assertion": "Оновлення користувача успішне",
+            "skipped": false,
+            "error": {
+              "name": "AssertionError",
+              "index": 0,
+              "test": "Оновлення користувача успішне",
+              "message": "expected response to have status code 200 but got 404",
+              "stack": "AssertionError: expected response to have status code 200 but got 404\n   at Object.eval sandbox-script.js:1:4)"
+            }
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "8dc9a1f9-4dd7-4e60-8bcf-f27198abb026",
+          "length": 6,
+          "cycles": 1,
+          "position": 4,
+          "iteration": 0,
+          "httpRequestId": "c26c56ab-e904-4107-8571-5fed0dacfa4f"
+        },
+        "item": {
+          "id": "be5fd27c-e2c2-42ee-975d-64e4518aaa18",
+          "name": "delete user",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "port": "3000",
+              "path": [
+                "api",
+                "users",
+                "68d176beee0390b407d82376"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "74edaf7a-d15c-4bc5-ae6f-e3d4f4e5d3e7",
+                "type": "text/javascript",
+                "packages": {},
+                "exec": [
+                  "pm.test(\"Видалення користувача успішне\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json().message).to.eql(\"Документ видалено\");",
+                  "});",
+                  ""
+                ],
+                "_lastExecutionId": "f967799e-5d85-416d-9778-90d256019da1"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e829ed2c-3d42-47a6-a135-46c2111628fb",
+                "type": "text/javascript",
+                "packages": {},
+                "_lastExecutionId": "87cb956d-66c7-479a-86bb-5e34ac4c3789"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "users",
+              "68d176beee0390b407d82376"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "d3891b9e-3754-48cd-9450-0eea24635565",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:3000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "DELETE"
+        },
+        "response": {
+          "id": "12a58520-5c64-4135-83e7-2179baa5809a",
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "52"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"34-TdssZGsdCuUrlcj1TCNUriy38pE\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 22 Sep 2025 16:33:00 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              208,
+              148,
+              208,
+              190,
+              208,
+              186,
+              209,
+              131,
+              208,
+              188,
+              208,
+              181,
+              208,
+              189,
+              209,
+              130,
+              32,
+              208,
+              189,
+              208,
+              181,
+              32,
+              208,
+              183,
+              208,
+              189,
+              208,
+              176,
+              208,
+              185,
+              208,
+              180,
+              208,
+              181,
+              208,
+              189,
+              208,
+              190,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 43,
+          "responseSize": 52
+        },
+        "id": "be5fd27c-e2c2-42ee-975d-64e4518aaa18",
+        "assertions": [
+          {
+            "assertion": "Видалення користувача успішне",
+            "skipped": false,
+            "error": {
+              "name": "AssertionError",
+              "index": 0,
+              "test": "Видалення користувача успішне",
+              "message": "expected response to have status code 200 but got 404",
+              "stack": "AssertionError: expected response to have status code 200 but got 404\n   at Object.eval sandbox-script.js:1:5)"
+            }
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "5eea5e4f-0d87-4aa9-8b10-e82f45c6195a",
+          "length": 6,
+          "cycles": 1,
+          "position": 5,
+          "iteration": 0,
+          "httpRequestId": "610db242-3eb2-478a-b73b-e72d751d6618"
+        },
+        "item": {
+          "id": "5f43d398-9112-4f1c-9ce5-b5bb54dcada9",
+          "name": "New Request",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "port": "3000",
+              "path": [
+                "api",
+                "movies",
+                "search",
+                "query"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [
+                {
+                  "key": "year",
+                  "value": "1903"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "movies",
+              "search",
+              "query"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [
+              {
+                "key": "year",
+                "value": "1903"
+              }
+            ],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "09073e93-a19d-4714-9005-f82d9d288f68",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:3000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "c295aa49-8c1a-45a5-9270-d72e20ac9cc7",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "2"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 22 Sep 2025 16:33:00 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              91,
+              93
+            ]
+          },
+          "cookie": [],
+          "responseTime": 42,
+          "responseSize": 2
+        },
+        "id": "5f43d398-9112-4f1c-9ce5-b5bb54dcada9"
+      }
+    ],
+    "transfers": {
+      "responseTotal": 382
+    },
+    "failures": [
+      {
+        "error": {
+          "name": "AssertionError",
+          "index": 0,
+          "test": "Оновлення користувача успішне",
+          "message": "expected response to have status code 200 but got 404",
+          "stack": "AssertionError: expected response to have status code 200 but got 404\n   at Object.eval sandbox-script.js:1:4)",
+          "checksum": "9ea652b1fa4895b15ff095eeb97decd9",
+          "id": "c16a622d-1ea7-4415-a3aa-6338a5299bf6",
+          "timestamp": 1758558780199,
+          "stacktrace": [
+            {
+              "fileName": "sandbox-script.js",
+              "lineNumber": 1,
+              "functionName": "Object.eval",
+              "typeName": "Object",
+              "methodName": "eval",
+              "columnNumber": 4,
+              "native": false
+            }
+          ]
+        },
+        "at": "assertion:0 in test-script",
+        "source": {
+          "id": "e3694ed0-5459-4503-b8fe-8a32a160457a",
+          "name": "update user",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "port": "3000",
+              "path": [
+                "api",
+                "users",
+                "68d176beee0390b407d82376"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Viktoria Updated\",\n  \"email\": \"vika.updated@example.com\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "43f15a98-abeb-4667-b334-2cdd26843025",
+                "type": "text/javascript",
+                "packages": {},
+                "exec": [
+                  "pm.test(\"Оновлення користувача успішне\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json().value.name).to.eql(\"Viktoria Updated\");",
+                  "});",
+                  ""
+                ],
+                "_lastExecutionId": "46bbb50b-0e81-46cb-a8cb-367328f0b47b"
+              }
+            }
+          ]
+        },
+        "parent": {
+          "_": {
+            "postman_id": "1601b510-d727-44d0-a48b-ea8f225412c0",
+            "exporter_id": "30947666"
+          },
+          "item": [
+            {
+              "id": "065bcbfe-1306-4085-8038-b7a17f93c475",
+              "name": "get all",
+              "request": {
+                "url": {
+                  "protocol": "http",
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "sample_mflix"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "auth": {
+                  "type": "noauth",
+                  "noauth": []
+                }
+              },
+              "response": [],
+              "event": []
+            },
+            {
+              "id": "5d2c2f2a-8faf-41c7-a52e-9a1d9c256b2a",
+              "name": "post user",
+              "request": {
+                "url": {
+                  "protocol": "http",
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "users"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Viktoria\",\n  \"email\": \"vika@example.com\",\n  \"password\": \"12345\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth",
+                  "noauth": []
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "37ac443b-5848-4235-bf3f-c420a42ed70b",
+                    "type": "text/javascript",
+                    "packages": {},
+                    "exec": [
+                      "pm.test(\"Створення користувача успішне\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "    pm.expect(pm.response.json()).to.have.property(\"_id\");",
+                      "    pm.environment.set(\"userId\", pm.response.json()._id);",
+                      "});",
+                      ""
+                    ],
+                    "_lastExecutionId": "224d369d-08cd-45bd-90b3-e0bf0b84182e"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "242cc8fc-8b5a-4909-be82-9c2d26e26fa7",
+              "name": "git id user",
+              "request": {
+                "url": {
+                  "protocol": "http",
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "users",
+                    "68d1794fee0390b407d82377"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "4b757a8f-1aa9-434f-9c4d-294336f33791",
+                    "type": "text/javascript",
+                    "packages": {},
+                    "exec": [
+                      "pm.test(\"Отримання користувача успішне\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "    pm.expect(pm.response.json().name).to.eql(\"Viktoria\");",
+                      "});",
+                      ""
+                    ],
+                    "_lastExecutionId": "9273451a-3e9c-4a71-866a-ab8ebd00e74f"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "e3694ed0-5459-4503-b8fe-8a32a160457a",
+              "name": "update user",
+              "request": {
+                "url": {
+                  "protocol": "http",
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "users",
+                    "68d176beee0390b407d82376"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Viktoria Updated\",\n  \"email\": \"vika.updated@example.com\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "43f15a98-abeb-4667-b334-2cdd26843025",
+                    "type": "text/javascript",
+                    "packages": {},
+                    "exec": [
+                      "pm.test(\"Оновлення користувача успішне\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "    pm.expect(pm.response.json().value.name).to.eql(\"Viktoria Updated\");",
+                      "});",
+                      ""
+                    ],
+                    "_lastExecutionId": "46bbb50b-0e81-46cb-a8cb-367328f0b47b"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "be5fd27c-e2c2-42ee-975d-64e4518aaa18",
+              "name": "delete user",
+              "request": {
+                "url": {
+                  "protocol": "http",
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "users",
+                    "68d176beee0390b407d82376"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "74edaf7a-d15c-4bc5-ae6f-e3d4f4e5d3e7",
+                    "type": "text/javascript",
+                    "packages": {},
+                    "exec": [
+                      "pm.test(\"Видалення користувача успішне\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "    pm.expect(pm.response.json().message).to.eql(\"Документ видалено\");",
+                      "});",
+                      ""
+                    ],
+                    "_lastExecutionId": "f967799e-5d85-416d-9778-90d256019da1"
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "e829ed2c-3d42-47a6-a135-46c2111628fb",
+                    "type": "text/javascript",
+                    "packages": {},
+                    "_lastExecutionId": "87cb956d-66c7-479a-86bb-5e34ac4c3789"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "5f43d398-9112-4f1c-9ce5-b5bb54dcada9",
+              "name": "New Request",
+              "request": {
+                "url": {
+                  "protocol": "http",
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "movies",
+                    "search",
+                    "query"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [
+                    {
+                      "key": "year",
+                      "value": "1903"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": []
+            }
+          ],
+          "event": [],
+          "variable": [],
+          "info": {
+            "_postman_id": "1601b510-d727-44d0-a48b-ea8f225412c0",
+            "name": "mflix",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+          }
+        },
+        "cursor": {
+          "ref": "fe8474cd-c2b0-4e0a-a5c7-43b83c1fdbef",
+          "length": 6,
+          "cycles": 1,
+          "position": 3,
+          "iteration": 0,
+          "httpRequestId": "3ca953a0-ccca-4249-baed-3321e8182c07",
+          "scriptId": "43f15a98-abeb-4667-b334-2cdd26843025",
+          "execution": "46bbb50b-0e81-46cb-a8cb-367328f0b47b"
+        }
+      },
+      {
+        "error": {
+          "name": "AssertionError",
+          "index": 0,
+          "test": "Видалення користувача успішне",
+          "message": "expected response to have status code 200 but got 404",
+          "stack": "AssertionError: expected response to have status code 200 but got 404\n   at Object.eval sandbox-script.js:1:5)",
+          "checksum": "fb218dd4420096b7129b81e3094da474",
+          "id": "db4a7753-4ec0-42c6-a1a4-c4566eb05827",
+          "timestamp": 1758558780261,
+          "stacktrace": [
+            {
+              "fileName": "sandbox-script.js",
+              "lineNumber": 1,
+              "functionName": "Object.eval",
+              "typeName": "Object",
+              "methodName": "eval",
+              "columnNumber": 5,
+              "native": false
+            }
+          ]
+        },
+        "at": "assertion:0 in test-script",
+        "source": {
+          "id": "be5fd27c-e2c2-42ee-975d-64e4518aaa18",
+          "name": "delete user",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "port": "3000",
+              "path": [
+                "api",
+                "users",
+                "68d176beee0390b407d82376"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "74edaf7a-d15c-4bc5-ae6f-e3d4f4e5d3e7",
+                "type": "text/javascript",
+                "packages": {},
+                "exec": [
+                  "pm.test(\"Видалення користувача успішне\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json().message).to.eql(\"Документ видалено\");",
+                  "});",
+                  ""
+                ],
+                "_lastExecutionId": "f967799e-5d85-416d-9778-90d256019da1"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e829ed2c-3d42-47a6-a135-46c2111628fb",
+                "type": "text/javascript",
+                "packages": {},
+                "_lastExecutionId": "87cb956d-66c7-479a-86bb-5e34ac4c3789"
+              }
+            }
+          ]
+        },
+        "parent": {
+          "_": {
+            "postman_id": "1601b510-d727-44d0-a48b-ea8f225412c0",
+            "exporter_id": "30947666"
+          },
+          "item": [
+            {
+              "id": "065bcbfe-1306-4085-8038-b7a17f93c475",
+              "name": "get all",
+              "request": {
+                "url": {
+                  "protocol": "http",
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "sample_mflix"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "auth": {
+                  "type": "noauth",
+                  "noauth": []
+                }
+              },
+              "response": [],
+              "event": []
+            },
+            {
+              "id": "5d2c2f2a-8faf-41c7-a52e-9a1d9c256b2a",
+              "name": "post user",
+              "request": {
+                "url": {
+                  "protocol": "http",
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "users"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Viktoria\",\n  \"email\": \"vika@example.com\",\n  \"password\": \"12345\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth",
+                  "noauth": []
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "37ac443b-5848-4235-bf3f-c420a42ed70b",
+                    "type": "text/javascript",
+                    "packages": {},
+                    "exec": [
+                      "pm.test(\"Створення користувача успішне\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "    pm.expect(pm.response.json()).to.have.property(\"_id\");",
+                      "    pm.environment.set(\"userId\", pm.response.json()._id);",
+                      "});",
+                      ""
+                    ],
+                    "_lastExecutionId": "224d369d-08cd-45bd-90b3-e0bf0b84182e"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "242cc8fc-8b5a-4909-be82-9c2d26e26fa7",
+              "name": "git id user",
+              "request": {
+                "url": {
+                  "protocol": "http",
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "users",
+                    "68d1794fee0390b407d82377"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "4b757a8f-1aa9-434f-9c4d-294336f33791",
+                    "type": "text/javascript",
+                    "packages": {},
+                    "exec": [
+                      "pm.test(\"Отримання користувача успішне\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "    pm.expect(pm.response.json().name).to.eql(\"Viktoria\");",
+                      "});",
+                      ""
+                    ],
+                    "_lastExecutionId": "9273451a-3e9c-4a71-866a-ab8ebd00e74f"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "e3694ed0-5459-4503-b8fe-8a32a160457a",
+              "name": "update user",
+              "request": {
+                "url": {
+                  "protocol": "http",
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "users",
+                    "68d176beee0390b407d82376"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Viktoria Updated\",\n  \"email\": \"vika.updated@example.com\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "43f15a98-abeb-4667-b334-2cdd26843025",
+                    "type": "text/javascript",
+                    "packages": {},
+                    "exec": [
+                      "pm.test(\"Оновлення користувача успішне\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "    pm.expect(pm.response.json().value.name).to.eql(\"Viktoria Updated\");",
+                      "});",
+                      ""
+                    ],
+                    "_lastExecutionId": "46bbb50b-0e81-46cb-a8cb-367328f0b47b"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "be5fd27c-e2c2-42ee-975d-64e4518aaa18",
+              "name": "delete user",
+              "request": {
+                "url": {
+                  "protocol": "http",
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "users",
+                    "68d176beee0390b407d82376"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "74edaf7a-d15c-4bc5-ae6f-e3d4f4e5d3e7",
+                    "type": "text/javascript",
+                    "packages": {},
+                    "exec": [
+                      "pm.test(\"Видалення користувача успішне\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "    pm.expect(pm.response.json().message).to.eql(\"Документ видалено\");",
+                      "});",
+                      ""
+                    ],
+                    "_lastExecutionId": "f967799e-5d85-416d-9778-90d256019da1"
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "e829ed2c-3d42-47a6-a135-46c2111628fb",
+                    "type": "text/javascript",
+                    "packages": {},
+                    "_lastExecutionId": "87cb956d-66c7-479a-86bb-5e34ac4c3789"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "5f43d398-9112-4f1c-9ce5-b5bb54dcada9",
+              "name": "New Request",
+              "request": {
+                "url": {
+                  "protocol": "http",
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "movies",
+                    "search",
+                    "query"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [
+                    {
+                      "key": "year",
+                      "value": "1903"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": []
+            }
+          ],
+          "event": [],
+          "variable": [],
+          "info": {
+            "_postman_id": "1601b510-d727-44d0-a48b-ea8f225412c0",
+            "name": "mflix",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+          }
+        },
+        "cursor": {
+          "ref": "8dc9a1f9-4dd7-4e60-8bcf-f27198abb026",
+          "length": 6,
+          "cycles": 1,
+          "position": 4,
+          "iteration": 0,
+          "httpRequestId": "c26c56ab-e904-4107-8571-5fed0dacfa4f",
+          "scriptId": "74edaf7a-d15c-4bc5-ae6f-e3d4f4e5d3e7",
+          "execution": "f967799e-5d85-416d-9778-90d256019da1"
+        }
+      }
+    ],
+    "error": null
+  }
+}
